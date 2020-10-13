@@ -23,3 +23,23 @@ experimental_df$nrNonInsight <- NaN
 for (s in unique(number_NonInsight$subject)){
   experimental_df$nrNonInsight[experimental_df$subject==s] <- number_NonInsight$n[number_NonInsight$subject==s]
 } 
+
+# add to df with behavioral data RMSSD, High-frequency HRV, IBI reject
+experimental_df$baseline_RMSSD <- NaN
+for (s in unique(artiifact_HRV_df$subject)){
+  experimental_df$baseline_RMSSD[experimental_df$subject==s] <- artiifact_HRV_df$Artiifact_RMSSD[artiifact_HRV_df$subject==s]
+} 
+
+experimental_df$HF_HRV <- NaN
+for (s in unique(artiifact_HRV_df$subject)){
+  experimental_df$HF_HRV[experimental_df$subject==s] <- artiifact_HRV_df$Artiifact_HF[artiifact_HRV_df$subject==s]
+} 
+
+experimental_df$num_reject_IBI <- NaN
+for (s in unique(artiifact_HRV_df$subject)){
+  experimental_df$num_reject_IBI[experimental_df$subject==s] <- artiifact_HRV_df$rejected_IBI[artiifact_HRV_df$subject==s]
+} 
+
+summary(experimental_df)
+summary(experimental_df$ACC)
+summary(preliminary_data)
